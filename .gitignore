@@ -1,0 +1,32 @@
+# Environment Variables
+.env
+
+# VS Code
+.vscode/
+
+# IntelliJ / Android Studio
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+
+# Python
+__pycache__/
+*.pyc
+
+# Flutter (we'll need these later)
+build/
+.dart_tool/
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Firebase
+firebase-debug.log
