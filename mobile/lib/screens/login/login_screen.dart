@@ -1,17 +1,72 @@
-import '../register/register_screen.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
+import '../home/home_screen.dart';
+import '../register/register_screen.dart';
+
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  void login() {
+
+    if (emailController.text.isEmpty ||
+        passwordController.text.isEmpty) {
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Please fill all fields"),
+        ),
+      );
+
+      return;
+    }
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text("Login Successful"),
+      ),
+    );
+
+    Future.delayed(const Duration(milliseconds: 700), () {
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (_) => const HomeScreen(),
+        ),
+      );
+
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FA),
+
       body: SafeArea(
         child: SingleChildScrollView(
+
           padding: const EdgeInsets.all(25),
+
           child: Column(
+
             children: [
 
               const SizedBox(height: 50),
@@ -55,6 +110,7 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 40),
 
               TextField(
+                controller: emailController,
                 decoration: InputDecoration(
                   labelText: "Email",
                   prefixIcon: const Icon(Icons.email),
@@ -67,6 +123,7 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 20),
 
               TextField(
+                controller: passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
                   labelText: "Password",
@@ -81,9 +138,23 @@ class LoginScreen extends StatelessWidget {
 
               Align(
                 alignment: Alignment.centerRight,
+
                 child: TextButton(
-                  onPressed: () {},
+
+                  onPressed: () {
+
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text(
+                          "Forgot Password feature coming soon!",
+                        ),
+                      ),
+                    );
+
+                  },
+
                   child: const Text("Forgot Password?"),
+
                 ),
               ),
 
@@ -92,14 +163,18 @@ class LoginScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 height: 55,
+
                 child: ElevatedButton(
-                  onPressed: () {},
+
+                  onPressed: login,
+
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF2E7D32),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
+
                   child: const Text(
                     "LOGIN",
                     style: TextStyle(
@@ -107,6 +182,7 @@ class LoginScreen extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
+
                 ),
               ),
 
@@ -114,21 +190,27 @@ class LoginScreen extends StatelessWidget {
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
+
                 children: [
 
                   const Text("Don't have an account?"),
 
                   TextButton(
-  onPressed: () {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const RegisterScreen(),
-      ),
-    );
-  },
-  child: const Text("Register"),
-),
+
+                    onPressed: () {
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const RegisterScreen(),
+                        ),
+                      );
+
+                    },
+
+                    child: const Text("Register"),
+
+                  ),
 
                 ],
               ),
