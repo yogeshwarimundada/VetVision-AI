@@ -1,3 +1,4 @@
+import 'add_animal_screen.dart';
 import 'package:flutter/material.dart';
 import 'animal_details_screen.dart';
 
@@ -47,17 +48,18 @@ class AnimalsScreen extends StatelessWidget {
         ],
       ),
 
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color(0xFF2E7D32),
-        onPressed: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text("Add Animal feature coming soon!"),
-            ),
-          );
-        },
-        child: const Icon(Icons.add, color: Colors.white),
+     floatingActionButton: FloatingActionButton(
+  backgroundColor: const Color(0xFF2E7D32),
+  onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const AddAnimalScreen(),
       ),
+    );
+  },
+  child: const Icon(Icons.add, color: Colors.white),
+),
     );
   }
 }
