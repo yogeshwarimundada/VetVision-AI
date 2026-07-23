@@ -19,6 +19,7 @@ class AnimalDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FA),
+
       appBar: AppBar(
         title: const Text(
           "Animal Details",
@@ -26,8 +27,10 @@ class AnimalDetailsScreen extends StatelessWidget {
         ),
         backgroundColor: const Color(0xFF2E7D32),
       ),
+
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
+
         child: Column(
           children: [
             const CircleAvatar(
@@ -126,6 +129,7 @@ class AnimalDetailsScreen extends StatelessWidget {
 
             const SizedBox(height: 25),
 
+            // Scan Again Button
             SizedBox(
               width: double.infinity,
               height: 55,
@@ -150,6 +154,7 @@ class AnimalDetailsScreen extends StatelessWidget {
 
             const SizedBox(height: 15),
 
+            // Edit Button
             SizedBox(
               width: double.infinity,
               height: 55,
@@ -168,6 +173,67 @@ class AnimalDetailsScreen extends StatelessWidget {
                   backgroundColor: Colors.orange,
                   foregroundColor: Colors.white,
                 ),
+              ),
+            ),
+
+            const SizedBox(height: 15),
+
+            // Delete Button
+            SizedBox(
+              width: double.infinity,
+              height: 55,
+              child: ElevatedButton.icon(
+                icon: const Icon(Icons.delete),
+                label: const Text("Delete Animal"),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  foregroundColor: Colors.white,
+                ),
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: const Text("Delete Animal"),
+                        content: const Text(
+                          "Are you sure you want to delete this animal?",
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text("Cancel"),
+                          ),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.red,
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context);
+
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text(
+                                    "Animal deleted successfully!",
+                                  ),
+                                ),
+                              );
+
+                              Navigator.pop(context);
+                            },
+                            child: const Text(
+                              "Delete",
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
               ),
             ),
           ],
