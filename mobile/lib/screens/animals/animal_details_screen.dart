@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'edit_animal_screen.dart';
 
 class AnimalDetailsScreen extends StatelessWidget {
   final String name;
@@ -18,7 +19,6 @@ class AnimalDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FA),
-
       appBar: AppBar(
         title: const Text(
           "Animal Details",
@@ -26,13 +26,10 @@ class AnimalDetailsScreen extends StatelessWidget {
         ),
         backgroundColor: const Color(0xFF2E7D32),
       ),
-
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
-
         child: Column(
           children: [
-
             const CircleAvatar(
               radius: 60,
               backgroundColor: Color(0xFF2E7D32),
@@ -70,7 +67,6 @@ class AnimalDetailsScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(16),
                 child: Column(
                   children: [
-
                     detailRow("Age", age),
 
                     const Divider(),
@@ -88,7 +84,6 @@ class AnimalDetailsScreen extends StatelessWidget {
                     const Divider(),
 
                     detailRow("Last Scan", "12 July 2026"),
-
                   ],
                 ),
               ),
@@ -111,14 +106,20 @@ class AnimalDetailsScreen extends StatelessWidget {
 
             const Card(
               child: ListTile(
-                leading: Icon(Icons.check_circle, color: Colors.green),
+                leading: Icon(
+                  Icons.check_circle,
+                  color: Colors.green,
+                ),
                 title: Text("Rabies"),
               ),
             ),
 
             const Card(
               child: ListTile(
-                leading: Icon(Icons.check_circle, color: Colors.green),
+                leading: Icon(
+                  Icons.check_circle,
+                  color: Colors.green,
+                ),
                 title: Text("DHPP"),
               ),
             ),
@@ -128,9 +129,16 @@ class AnimalDetailsScreen extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               height: 55,
-
               child: ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                        "Scan feature will be connected soon.",
+                      ),
+                    ),
+                  );
+                },
                 icon: const Icon(Icons.camera_alt),
                 label: const Text("Scan Again"),
                 style: ElevatedButton.styleFrom(
@@ -145,9 +153,15 @@ class AnimalDetailsScreen extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               height: 55,
-
               child: ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const EditAnimalScreen(),
+                    ),
+                  );
+                },
                 icon: const Icon(Icons.edit),
                 label: const Text("Edit Details"),
                 style: ElevatedButton.styleFrom(
@@ -156,7 +170,6 @@ class AnimalDetailsScreen extends StatelessWidget {
                 ),
               ),
             ),
-
           ],
         ),
       ),
@@ -169,7 +182,9 @@ class AnimalDetailsScreen extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
         ),
         Text(value),
       ],
