@@ -1,5 +1,5 @@
+import '../history/scan_history_screen.dart';
 import 'package:flutter/material.dart';
-
 import '../animals/animals_screen.dart';
 import '../login/login_screen.dart';
 import '../profile/profile_screen.dart';
@@ -97,14 +97,11 @@ class HomeScreen extends StatelessWidget {
                 ),
 
                 dashboardCard(
-                  context,
-                  Icons.history,
-                  "Scan History",
-                  const ComingSoonScreen(
-                    title: "Scan History",
-                  ),
-                ),
-
+  context,
+  Icons.history,
+  "Scan History",
+  const ScanHistoryScreen(),
+),
                 dashboardCard(
                   context,
                   Icons.medical_services,
@@ -192,16 +189,15 @@ class HomeScreen extends StatelessWidget {
               );
               break;
 
+            
             case 2:
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => const ComingSoonScreen(
-                    title: "Scan History",
-                  ),
-                ),
-              );
-              break;
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (_) => const ScanHistoryScreen(),
+    ),
+  );
+  break;
 
             case 3:
               Navigator.push(
