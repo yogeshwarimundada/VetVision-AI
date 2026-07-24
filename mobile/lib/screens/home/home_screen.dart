@@ -1,3 +1,4 @@
+import '../vaccination/vaccination_screen.dart';
 import '../reports/health_reports_screen.dart';
 import '../history/scan_history_screen.dart';
 import 'package:flutter/material.dart';
@@ -111,13 +112,11 @@ class HomeScreen extends StatelessWidget {
 ),
 
                 dashboardCard(
-                  context,
-                  Icons.vaccines,
-                  "Vaccination",
-                  const ComingSoonScreen(
-                    title: "Vaccination",
-                  ),
-                ),
+  context,
+  Icons.vaccines,
+  "Vaccination",
+  const VaccinationScreen(),
+),
 
                 dashboardCard(
                   context,
