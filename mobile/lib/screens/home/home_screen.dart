@@ -1,3 +1,4 @@
+import '../reports/health_reports_screen.dart';
 import '../history/scan_history_screen.dart';
 import 'package:flutter/material.dart';
 import '../animals/animals_screen.dart';
@@ -103,13 +104,11 @@ class HomeScreen extends StatelessWidget {
   const ScanHistoryScreen(),
 ),
                 dashboardCard(
-                  context,
-                  Icons.medical_services,
-                  "Health Reports",
-                  const ComingSoonScreen(
-                    title: "Health Reports",
-                  ),
-                ),
+  context,
+  Icons.medical_services,
+  "Health Reports",
+  const HealthReportsScreen(),
+),
 
                 dashboardCard(
                   context,
