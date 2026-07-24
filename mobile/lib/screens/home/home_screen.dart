@@ -1,5 +1,8 @@
-import '../animals/animals_screen.dart';
 import 'package:flutter/material.dart';
+
+import '../animals/animals_screen.dart';
+import '../login/login_screen.dart';
+import '../profile/profile_screen.dart';
 import '../scan/scan_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -19,7 +22,10 @@ class HomeScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.notifications, color: Colors.white),
+            icon: const Icon(
+              Icons.notifications,
+              color: Colors.white,
+            ),
             onPressed: () {},
           ),
         ],
@@ -27,9 +33,11 @@ class HomeScreen extends StatelessWidget {
 
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
+
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+
             const Text(
               "Hello, Yogeshwari 👋",
               style: TextStyle(
@@ -82,38 +90,46 @@ class HomeScreen extends StatelessWidget {
                 ),
 
                 dashboardCard(
-  context,
-  Icons.pets,
-  "My Animals",
-  const AnimalsScreen(),
-),
+                  context,
+                  Icons.pets,
+                  "My Animals",
+                  const AnimalsScreen(),
+                ),
 
                 dashboardCard(
                   context,
                   Icons.history,
                   "Scan History",
-                  const ComingSoonScreen(title: "Scan History"),
+                  const ComingSoonScreen(
+                    title: "Scan History",
+                  ),
                 ),
 
                 dashboardCard(
                   context,
                   Icons.medical_services,
                   "Health Reports",
-                  const ComingSoonScreen(title: "Health Reports"),
+                  const ComingSoonScreen(
+                    title: "Health Reports",
+                  ),
                 ),
 
                 dashboardCard(
                   context,
                   Icons.vaccines,
                   "Vaccination",
-                  const ComingSoonScreen(title: "Vaccination"),
+                  const ComingSoonScreen(
+                    title: "Vaccination",
+                  ),
                 ),
 
                 dashboardCard(
                   context,
                   Icons.location_on,
                   "Nearby Vets",
-                  const ComingSoonScreen(title: "Nearby Vets"),
+                  const ComingSoonScreen(
+                    title: "Nearby Vets",
+                  ),
                 ),
               ],
             ),
@@ -124,7 +140,15 @@ class HomeScreen extends StatelessWidget {
               width: double.infinity,
               height: 55,
               child: ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const LoginScreen(),
+                    ),
+                    (route) => false,
+                  );
+                },
                 icon: const Icon(Icons.logout),
                 label: const Text("Logout"),
                 style: ElevatedButton.styleFrom(
@@ -137,21 +161,76 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
 
-        bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Color(0xFF2E7D32),
-        items: [
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 0,
+
+        backgroundColor: Colors.white,
+
+        elevation: 12,
+
+        type: BottomNavigationBarType.fixed,
+
+        selectedItemColor: const Color(0xFF2E7D32),
+
+        unselectedItemColor: Colors.grey,
+
+        showSelectedLabels: true,
+
+        showUnselectedLabels: true,
+
+        onTap: (index) {
+          switch (index) {
+            case 0:
+              break;
+
+            case 1:
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const ScanScreen(),
+                ),
+              );
+              break;
+
+            case 2:
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const ComingSoonScreen(
+                    title: "Scan History",
+                  ),
+                ),
+              );
+              break;
+
+            case 3:
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const ProfileScreen(),
+                ),
+              );
+              break;
+          }
+        },
+
+        items: const [
+
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: "Home",
           ),
+
           BottomNavigationBarItem(
             icon: Icon(Icons.camera_alt),
             label: "Scan",
           ),
+
           BottomNavigationBarItem(
             icon: Icon(Icons.history),
             label: "History",
           ),
+
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: "Profile",
@@ -178,13 +257,14 @@ class HomeScreen extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => page,
+              builder: (_) => page,
             ),
           );
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+
             Icon(
               icon,
               size: 50,
@@ -207,7 +287,6 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
 class ComingSoonScreen extends StatelessWidget {
   final String title;
 
@@ -219,17 +298,70 @@ class ComingSoonScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF5F7FA),
+
       appBar: AppBar(
-        title: Text(title),
         backgroundColor: const Color(0xFF2E7D32),
+        iconTheme: const IconThemeData(color: Colors.white),
+        title: Text(
+          title,
+          style: const TextStyle(color: Colors.white),
+        ),
       ),
+
       body: Center(
-        child: Text(
-          "$title\nComing Soon!",
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+
+              const Icon(
+                Icons.construction,
+                size: 100,
+                color: Color(0xFF2E7D32),
+              ),
+
+              const SizedBox(height: 25),
+
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              const SizedBox(height: 15),
+
+              const Text(
+                "This feature is under development and will be available soon.",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.grey,
+                ),
+              ),
+
+              const SizedBox(height: 40),
+
+              SizedBox(
+                width: 220,
+                height: 50,
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(Icons.arrow_back),
+                  label: const Text("Back"),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF2E7D32),
+                    foregroundColor: Colors.white,
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
