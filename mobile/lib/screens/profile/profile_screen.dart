@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../settings/settings_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -9,17 +10,16 @@ class ProfileScreen extends StatelessWidget {
       backgroundColor: const Color(0xFFF5F7FA),
 
       appBar: AppBar(
+        backgroundColor: const Color(0xFF2E7D32),
         title: const Text(
           "Profile",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: const Color(0xFF2E7D32),
       ),
 
       body: SingleChildScrollView(
         child: Column(
           children: [
-
             const SizedBox(height: 30),
 
             const CircleAvatar(
@@ -60,38 +60,36 @@ class ProfileScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Column(
-                children: [
-
+                children: const [
                   ListTile(
-                    leading: const Icon(Icons.phone),
-                    title: const Text("Phone"),
-                    subtitle: const Text("+91 9876543210"),
+                    leading: Icon(Icons.phone),
+                    title: Text("Phone"),
+                    subtitle: Text("+91 9876543210"),
                   ),
 
-                  const Divider(height: 1),
+                  Divider(height: 1),
 
                   ListTile(
-                    leading: const Icon(Icons.location_on),
-                    title: const Text("Location"),
-                    subtitle: const Text("Pune, Maharashtra"),
+                    leading: Icon(Icons.location_on),
+                    title: Text("Location"),
+                    subtitle: Text("Pune, Maharashtra"),
                   ),
 
-                  const Divider(height: 1),
+                  Divider(height: 1),
 
                   ListTile(
-                    leading: const Icon(Icons.pets),
-                    title: const Text("Animals Registered"),
-                    subtitle: const Text("3 Animals"),
+                    leading: Icon(Icons.pets),
+                    title: Text("Animals Registered"),
+                    subtitle: Text("3 Animals"),
                   ),
 
-                  const Divider(height: 1),
+                  Divider(height: 1),
 
                   ListTile(
-                    leading: const Icon(Icons.calendar_today),
-                    title: const Text("Member Since"),
-                    subtitle: const Text("July 2026"),
+                    leading: Icon(Icons.calendar_today),
+                    title: Text("Member Since"),
+                    subtitle: Text("July 2026"),
                   ),
-
                 ],
               ),
             ),
@@ -105,7 +103,6 @@ class ProfileScreen extends StatelessWidget {
               ),
               child: Column(
                 children: [
-
                   ListTile(
                     leading: const Icon(Icons.edit),
                     title: const Text("Edit Profile"),
@@ -114,7 +111,7 @@ class ProfileScreen extends StatelessWidget {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text(
-                            "Edit Profile coming soon!",
+                            "Edit Profile feature coming soon!",
                           ),
                         ),
                       );
@@ -128,11 +125,10 @@ class ProfileScreen extends StatelessWidget {
                     title: const Text("Settings"),
                     trailing: const Icon(Icons.arrow_forward_ios),
                     onTap: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            "Settings coming soon!",
-                          ),
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const SettingsScreen(),
                         ),
                       );
                     },
@@ -154,7 +150,6 @@ class ProfileScreen extends StatelessWidget {
                       );
                     },
                   ),
-
                 ],
               ),
             ),
@@ -178,7 +173,6 @@ class ProfileScreen extends StatelessWidget {
             ),
 
             const SizedBox(height: 30),
-
           ],
         ),
       ),
