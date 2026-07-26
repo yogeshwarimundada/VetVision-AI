@@ -1,3 +1,4 @@
+import '../notifications/notifications_screen.dart';
 import '../vets/nearby_vets_screen.dart';
 import '../vaccination/vaccination_screen.dart';
 import '../reports/health_reports_screen.dart';
@@ -29,7 +30,14 @@ class HomeScreen extends StatelessWidget {
               Icons.notifications,
               color: Colors.white,
             ),
-            onPressed: () {},
+            onPressed: () {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (_) => const NotificationsScreen(),
+    ),
+  );
+},
           ),
         ],
       ),
