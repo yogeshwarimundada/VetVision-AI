@@ -1,3 +1,4 @@
+import '../vets/nearby_vets_screen.dart';
 import '../vaccination/vaccination_screen.dart';
 import '../reports/health_reports_screen.dart';
 import '../history/scan_history_screen.dart';
@@ -119,13 +120,11 @@ class HomeScreen extends StatelessWidget {
 ),
 
                 dashboardCard(
-                  context,
-                  Icons.location_on,
-                  "Nearby Vets",
-                  const ComingSoonScreen(
-                    title: "Nearby Vets",
-                  ),
-                ),
+  context,
+  Icons.location_on,
+  "Nearby Vets",
+  const NearbyVetsScreen(),
+),
               ],
             ),
 
