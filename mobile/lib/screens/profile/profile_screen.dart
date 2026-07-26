@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../settings/settings_screen.dart';
+import 'edit_profile_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -66,25 +67,19 @@ class ProfileScreen extends StatelessWidget {
                     title: Text("Phone"),
                     subtitle: Text("+91 9876543210"),
                   ),
-
                   Divider(height: 1),
-
                   ListTile(
                     leading: Icon(Icons.location_on),
                     title: Text("Location"),
                     subtitle: Text("Pune, Maharashtra"),
                   ),
-
                   Divider(height: 1),
-
                   ListTile(
                     leading: Icon(Icons.pets),
                     title: Text("Animals Registered"),
                     subtitle: Text("3 Animals"),
                   ),
-
                   Divider(height: 1),
-
                   ListTile(
                     leading: Icon(Icons.calendar_today),
                     title: Text("Member Since"),
@@ -108,11 +103,10 @@ class ProfileScreen extends StatelessWidget {
                     title: const Text("Edit Profile"),
                     trailing: const Icon(Icons.arrow_forward_ios),
                     onTap: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            "Edit Profile feature coming soon!",
-                          ),
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const EditProfileScreen(),
                         ),
                       );
                     },
