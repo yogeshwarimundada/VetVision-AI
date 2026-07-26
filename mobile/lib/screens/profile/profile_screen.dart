@@ -1,3 +1,4 @@
+import '../help/help_support_screen.dart';
 import 'package:flutter/material.dart';
 import '../settings/settings_screen.dart';
 import 'edit_profile_screen.dart';
@@ -134,15 +135,14 @@ class ProfileScreen extends StatelessWidget {
                     leading: const Icon(Icons.help),
                     title: const Text("Help & Support"),
                     trailing: const Icon(Icons.arrow_forward_ios),
-                    onTap: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            "Help & Support coming soon!",
-                          ),
-                        ),
-                      );
-                    },
+                   onTap: () {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (_) => const HelpSupportScreen(),
+    ),
+  );
+},
                   ),
                 ],
               ),
