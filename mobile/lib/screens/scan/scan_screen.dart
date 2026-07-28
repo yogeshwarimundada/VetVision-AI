@@ -1,3 +1,4 @@
+import 'scan_result_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -110,13 +111,12 @@ class _ScanScreenState extends State<ScanScreen> {
                       ),
                     );
                   } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text(
-                          "AI Prediction feature coming soon!",
-                        ),
-                      ),
-                    );
+                    Navigator.push(
+  context,
+  MaterialPageRoute(
+    builder: (_) => const ScanResultScreen(),
+  ),
+);
                   }
                 },
                 icon: const Icon(Icons.auto_awesome),
