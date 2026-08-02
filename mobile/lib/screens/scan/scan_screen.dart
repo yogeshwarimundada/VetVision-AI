@@ -1,3 +1,4 @@
+import '../prediction/ai_prediction_screen.dart';
 import 'scan_result_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -104,21 +105,21 @@ class _ScanScreenState extends State<ScanScreen> {
               height: 55,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  if (_selectedImage == null) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text("Please select an image first."),
-                      ),
-                    );
-                  } else {
-                    Navigator.push(
-  context,
-  MaterialPageRoute(
-    builder: (_) => const ScanResultScreen(),
-  ),
-);
-                  }
-                },
+  if (_selectedImage == null) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text("Please select an image first."),
+      ),
+    );
+  } else {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const AIPredictionScreen(),
+      ),
+    );
+  }
+},
                 icon: const Icon(Icons.auto_awesome),
                 label: const Text("Predict Disease"),
                 style: ElevatedButton.styleFrom(
