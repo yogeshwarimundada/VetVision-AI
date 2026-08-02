@@ -1,6 +1,7 @@
+import '../animal_details/animal_details_screen.dart';
 import 'add_animal_screen.dart';
 import 'package:flutter/material.dart';
-import 'animal_details_screen.dart';
+
 
 class AnimalsScreen extends StatelessWidget {
   const AnimalsScreen({super.key});
