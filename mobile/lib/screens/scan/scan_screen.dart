@@ -1,6 +1,6 @@
+import 'scan_result_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'scan_result_screen.dart';
 
 class ScanScreen extends StatefulWidget {
   const ScanScreen({super.key});
@@ -31,11 +31,11 @@ class _ScanScreenState extends State<ScanScreen> {
       backgroundColor: const Color(0xFFF5F7FA),
 
       appBar: AppBar(
-        backgroundColor: const Color(0xFF2E7D32),
         title: const Text(
           "Scan Animal",
           style: TextStyle(color: Colors.white),
         ),
+        backgroundColor: const Color(0xFF2E7D32),
       ),
 
       body: Padding(
@@ -47,13 +47,10 @@ class _ScanScreenState extends State<ScanScreen> {
             Container(
               height: 300,
               width: double.infinity,
-
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(15),
-                border: Border.all(
-                  color: Colors.grey.shade300,
-                ),
+                border: Border.all(color: Colors.grey.shade300),
               ),
 
               child: _selectedImage == null
@@ -66,27 +63,18 @@ class _ScanScreenState extends State<ScanScreen> {
                           color: Colors.grey,
                         ),
                         SizedBox(height: 10),
-                        Text(
-                          "No Image Selected",
-                          style: TextStyle(fontSize: 18),
-                        ),
+                        Text("No Image Selected"),
                       ],
                     )
                   : ClipRRect(
                       borderRadius: BorderRadius.circular(15),
                       child: Image.network(
                         _selectedImage!.path,
-                        width: double.infinity,
                         fit: BoxFit.cover,
-                        errorBuilder: (
-                          context,
-                          error,
-                          stackTrace,
-                        ) {
+                        width: double.infinity,
+                        errorBuilder: (context, error, stackTrace) {
                           return const Center(
-                            child: Text(
-                              "Unable to load image",
-                            ),
+                            child: Text("Unable to load image"),
                           );
                         },
                       ),
@@ -98,7 +86,6 @@ class _ScanScreenState extends State<ScanScreen> {
             SizedBox(
               width: double.infinity,
               height: 55,
-
               child: ElevatedButton.icon(
                 onPressed: pickImage,
                 icon: const Icon(Icons.photo),
@@ -115,37 +102,25 @@ class _ScanScreenState extends State<ScanScreen> {
             SizedBox(
               width: double.infinity,
               height: 55,
-
               child: ElevatedButton.icon(
                 onPressed: () {
-
                   if (_selectedImage == null) {
-
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
-                        content: Text(
-                          "Please select an image first.",
-                        ),
+                        content: Text("Please select an image first."),
                       ),
                     );
-
                   } else {
-
                     Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) =>
-                            const ScanResultScreen(),
-                      ),
-                    );
-
+  context,
+  MaterialPageRoute(
+    builder: (_) => const ScanResultScreen(),
+  ),
+);
                   }
                 },
-
                 icon: const Icon(Icons.auto_awesome),
-
                 label: const Text("Predict Disease"),
-
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.orange,
                   foregroundColor: Colors.white,

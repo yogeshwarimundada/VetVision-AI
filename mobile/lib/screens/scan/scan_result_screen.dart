@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../disease/disease_info_screen.dart';
 
 class ScanResultScreen extends StatelessWidget {
   const ScanResultScreen({super.key});
@@ -10,9 +11,8 @@ class ScanResultScreen extends StatelessWidget {
 
       appBar: AppBar(
         backgroundColor: const Color(0xFF2E7D32),
-        iconTheme: const IconThemeData(color: Colors.white),
         title: const Text(
-          "Scan Result",
+          "AI Scan Result",
           style: TextStyle(color: Colors.white),
         ),
       ),
@@ -30,128 +30,11 @@ class ScanResultScreen extends StatelessWidget {
                 color: Colors.grey.shade300,
                 borderRadius: BorderRadius.circular(15),
               ),
-              child: const Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.image,
-                    size: 80,
-                    color: Colors.grey,
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    "Animal Image",
-                    style: TextStyle(fontSize: 18),
-                  ),
-                ],
-              ),
-            ),
-
-            const SizedBox(height: 25),
-
-            Card(
-              elevation: 4,
-              child: Padding(
-                padding: const EdgeInsets.all(18),
-                child: Column(
-                  children: [
-
-                    const Text(
-                      "AI Prediction",
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-
-                    const SizedBox(height: 15),
-
-                    const Text(
-                      "Healthy",
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.green,
-                      ),
-                    ),
-
-                    const SizedBox(height: 10),
-
-                    LinearProgressIndicator(
-                      value: 0.95,
-                      minHeight: 10,
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.green,
-                      backgroundColor: Colors.grey.shade300,
-                    ),
-
-                    const SizedBox(height: 8),
-
-                    const Text(
-                      "Confidence: 95%",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 25),
-
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(18),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-
-                    const Text(
-                      "Detected Symptoms",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-
-                    const SizedBox(height: 12),
-
-                    symptomTile("✔ Bright eyes"),
-                    symptomTile("✔ Clean skin"),
-                    symptomTile("✔ Normal posture"),
-                    symptomTile("✔ No visible wounds"),
-                  ],
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 25),
-                        Card(
-              child: Padding(
-                padding: const EdgeInsets.all(18),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-
-                    const Text(
-                      "Recommended Treatment",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-
-                    const SizedBox(height: 12),
-
-                    const Text(
-                      "• Continue regular balanced diet.\n"
-                      "• Ensure clean drinking water.\n"
-                      "• Maintain proper vaccination schedule.\n"
-                      "• Monitor animal for unusual behavior.",
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ],
+              child: const Center(
+                child: Icon(
+                  Icons.image,
+                  size: 90,
+                  color: Colors.grey,
                 ),
               ),
             ),
@@ -160,26 +43,160 @@ class ScanResultScreen extends StatelessWidget {
 
             Card(
               color: Colors.green.shade50,
+              elevation: 3,
+
+              child: Padding(
+                padding: const EdgeInsets.all(18),
+
+                child: Column(
+                  children: [
+
+                    const Icon(
+                      Icons.check_circle,
+                      color: Colors.green,
+                      size: 70,
+                    ),
+
+                    const SizedBox(height: 15),
+
+                    const Text(
+                      "Disease Detected",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.grey,
+                      ),
+                    ),
+
+                    const SizedBox(height: 10),
+
+                    const Text(
+                      "Foot and Mouth Disease",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red,
+                      ),
+                    ),
+
+                    const SizedBox(height: 10),
+
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 18,
+                        vertical: 10,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.orange.shade100,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: const Text(
+                        "Confidence : 96%",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            Card(
+              elevation: 3,
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+
+                  children: const [
+
+                    Text(
+                      "Detected Symptoms",
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+
+                    SizedBox(height: 12),
+
+                    Text(
+                      "• Fever\n"
+                      "• Mouth ulcers\n"
+                      "• Excessive salivation\n"
+                      "• Difficulty walking\n"
+                      "• Loss of appetite",
+                      style: TextStyle(fontSize: 17),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            Card(
+              elevation: 3,
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+
+                  children: const [
+
+                    Text(
+                      "Recommended Treatment",
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+
+                    SizedBox(height: 12),
+
+                    Text(
+                      "• Isolate infected animal\n"
+                      "• Provide clean water\n"
+                      "• Soft nutritious food\n"
+                      "• Consult a veterinarian\n"
+                      "• Regular vaccination",
+                      style: TextStyle(fontSize: 17),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 20),
+                        Card(
+              color: Colors.blue.shade50,
+              elevation: 3,
               child: const Padding(
-                padding: EdgeInsets.all(18),
+                padding: EdgeInsets.all(16),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
 
                     Icon(
                       Icons.local_hospital,
-                      color: Colors.green,
-                      size: 35,
+                      color: Colors.blue,
+                      size: 40,
                     ),
 
                     SizedBox(width: 15),
 
                     Expanded(
                       child: Text(
-                        "Vet Recommendation\n\n"
-                        "No immediate veterinary attention is required. "
-                        "Continue regular health monitoring and schedule "
-                        "routine checkups.",
+                        "Veterinary Recommendation:\n\n"
+                        "Consult a veterinarian immediately. "
+                        "Early diagnosis and treatment can help "
+                        "prevent the spread of infection.",
                         style: TextStyle(fontSize: 16),
                       ),
                     ),
@@ -188,7 +205,30 @@ class ScanResultScreen extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 30),
+            const SizedBox(height: 25),
+
+            SizedBox(
+              width: double.infinity,
+              height: 55,
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const DiseaseInfoScreen(),
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.menu_book),
+                label: const Text("Learn More About Disease"),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  foregroundColor: Colors.white,
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 15),
 
             SizedBox(
               width: double.infinity,
@@ -221,33 +261,14 @@ class ScanResultScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                icon: const Icon(Icons.camera_alt),
+                icon: const Icon(Icons.refresh),
                 label: const Text("Scan Again"),
               ),
             ),
+
+            const SizedBox(height: 20),
           ],
         ),
-      ),
-    );
-  }
-
-  static Widget symptomTile(String text) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6),
-      child: Row(
-        children: [
-          const Icon(
-            Icons.check_circle,
-            color: Colors.green,
-          ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Text(
-              text,
-              style: const TextStyle(fontSize: 16),
-            ),
-          ),
-        ],
       ),
     );
   }
