@@ -1,3 +1,4 @@
+import 'add_vaccination_screen.dart';
 import 'package:flutter/material.dart';
 
 class VaccinationScreen extends StatelessWidget {
@@ -63,15 +64,13 @@ class VaccinationScreen extends StatelessWidget {
         backgroundColor: const Color(0xFF2E7D32),
         elevation: 6,
         onPressed: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              behavior: SnackBarBehavior.floating,
-              content: Text(
-                "Add Vaccination feature will be connected soon.",
-              ),
-            ),
-          );
-        },
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (_) => const AddVaccinationScreen(),
+    ),
+  );
+},
         icon: const Icon(Icons.add, color: Colors.white),
         label: const Text(
           "Add Record",
