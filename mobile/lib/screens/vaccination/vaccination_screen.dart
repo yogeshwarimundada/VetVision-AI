@@ -1,3 +1,4 @@
+import 'add_vaccination_screen.dart';
 import 'package:flutter/material.dart';
 
 class VaccinationScreen extends StatelessWidget {
@@ -65,10 +66,7 @@ class VaccinationScreen extends StatelessWidget {
         onPressed: () {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              behavior: SnackBarBehavior.floating,
-              content: Text(
-                "Add Vaccination feature will be connected soon.",
-              ),
+              content: Text("Add Vaccination feature coming soon."),
             ),
           );
         },
