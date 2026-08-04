@@ -9,54 +9,81 @@ class NearbyVetsScreen extends StatelessWidget {
       backgroundColor: const Color(0xFFF5F7FA),
 
       appBar: AppBar(
+        elevation: 0,
         backgroundColor: const Color(0xFF2E7D32),
         iconTheme: const IconThemeData(color: Colors.white),
         title: const Text(
-          "Nearby Vets",
-          style: TextStyle(color: Colors.white),
+          "Nearby Veterinary Clinics",
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
 
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: const [
+      body: Column(
+        children: [
 
-          VetCard(
-            clinicName: "Pune Pet Care Clinic",
-            address: "Baner, Pune",
-            distance: "2.3 km",
-            rating: "4.8",
-            emergency: true,
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: "Search nearby veterinary clinics...",
+                prefixIcon: const Icon(Icons.search),
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(14),
+                  borderSide: BorderSide.none,
+                ),
+              ),
+            ),
           ),
 
-          SizedBox(height: 15),
+          Expanded(
+            child: ListView(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              children: const [
 
-          VetCard(
-            clinicName: "Happy Paws Veterinary Hospital",
-            address: "Kothrud, Pune",
-            distance: "5.1 km",
-            rating: "4.6",
-            emergency: false,
-          ),
+                VetCard(
+                  clinicName: "Pune Pet Care Clinic",
+                  address: "Baner, Pune",
+                  distance: "2.3 km",
+                  rating: "4.8",
+                  emergency: true,
+                ),
 
-          SizedBox(height: 15),
+                SizedBox(height: 16),
 
-          VetCard(
-            clinicName: "Animal Care Centre",
-            address: "Hinjewadi, Pune",
-            distance: "7.4 km",
-            rating: "4.7",
-            emergency: true,
-          ),
+                VetCard(
+                  clinicName: "Happy Paws Veterinary Hospital",
+                  address: "Kothrud, Pune",
+                  distance: "5.1 km",
+                  rating: "4.6",
+                  emergency: false,
+                ),
 
-          SizedBox(height: 15),
+                SizedBox(height: 16),
 
-          VetCard(
-            clinicName: "City Veterinary Clinic",
-            address: "Shivajinagar, Pune",
-            distance: "9.2 km",
-            rating: "4.5",
-            emergency: false,
+                VetCard(
+                  clinicName: "Animal Care Centre",
+                  address: "Hinjewadi, Pune",
+                  distance: "7.4 km",
+                  rating: "4.7",
+                  emergency: true,
+                ),
+
+                SizedBox(height: 16),
+
+                VetCard(
+                  clinicName: "City Veterinary Clinic",
+                  address: "Shivajinagar, Pune",
+                  distance: "9.2 km",
+                  rating: "4.5",
+                  emergency: false,
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -72,7 +99,7 @@ class NearbyVetsScreen extends StatelessWidget {
             ),
           );
         },
-        icon: const Icon(Icons.search, color: Colors.white),
+        icon: const Icon(Icons.map, color: Colors.white),
         label: const Text(
           "Find More",
           style: TextStyle(color: Colors.white),
@@ -100,15 +127,14 @@ class VetCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+        return Card(
+      margin: const EdgeInsets.only(bottom: 16),
       elevation: 4,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(18),
       ),
-
       child: Padding(
-        padding: const EdgeInsets.all(16),
-
+        padding: const EdgeInsets.all(18),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -117,7 +143,7 @@ class VetCard extends StatelessWidget {
               children: [
 
                 const CircleAvatar(
-                  radius: 30,
+                  radius: 32,
                   backgroundColor: Color(0xFF2E7D32),
                   child: Icon(
                     Icons.local_hospital,
@@ -136,17 +162,18 @@ class VetCard extends StatelessWidget {
                       Text(
                         clinicName,
                         style: const TextStyle(
-                          fontSize: 19,
+                          fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
 
-                      const SizedBox(height: 5),
+                      const SizedBox(height: 4),
 
                       Text(
                         address,
                         style: const TextStyle(
-                          color: Colors.grey,
+                          color: Colors.black54,
+                          fontSize: 15,
                         ),
                       ),
                     ],
@@ -155,8 +182,8 @@ class VetCard extends StatelessWidget {
 
                 Container(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 5,
+                    horizontal: 12,
+                    vertical: 6,
                   ),
                   decoration: BoxDecoration(
                     color: emergency
@@ -167,8 +194,9 @@ class VetCard extends StatelessWidget {
                   child: Text(
                     emergency ? "24×7" : "Open",
                     style: TextStyle(
-                      color:
-                          emergency ? Colors.red : Colors.green,
+                      color: emergency
+                          ? Colors.red
+                          : Colors.green,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -176,7 +204,7 @@ class VetCard extends StatelessWidget {
               ],
             ),
 
-            const SizedBox(height: 18),
+            const SizedBox(height: 20),
 
             Row(
               children: [
@@ -186,9 +214,14 @@ class VetCard extends StatelessWidget {
                   color: Color(0xFF2E7D32),
                 ),
 
-                const SizedBox(width: 8),
+                const SizedBox(width: 6),
 
-                Text(distance),
+                Text(
+                  distance,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
 
                 const Spacer(),
 
@@ -199,11 +232,16 @@ class VetCard extends StatelessWidget {
 
                 const SizedBox(width: 5),
 
-                Text(rating),
+                Text(
+                  rating,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ],
             ),
 
-            const SizedBox(height: 20),
+            const SizedBox(height: 22),
 
             Row(
               children: [
@@ -224,11 +262,12 @@ class VetCard extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF2E7D32),
                       foregroundColor: Colors.white,
+                      minimumSize: const Size(0, 48),
                     ),
                   ),
                 ),
 
-                const SizedBox(width: 15),
+                const SizedBox(width: 10),
 
                 Expanded(
                   child: ElevatedButton.icon(
@@ -236,7 +275,7 @@ class VetCard extends StatelessWidget {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text(
-                            "Maps feature coming soon.",
+                            "Maps integration coming soon.",
                           ),
                         ),
                       );
@@ -246,10 +285,35 @@ class VetCard extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.orange,
                       foregroundColor: Colors.white,
+                      minimumSize: const Size(0, 48),
                     ),
                   ),
                 ),
               ],
+            ),
+
+            const SizedBox(height: 12),
+
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        "Appointment booking for $clinicName coming soon.",
+                      ),
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.calendar_today),
+                label: const Text("Book Appointment"),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  foregroundColor: Colors.white,
+                  minimumSize: const Size(double.infinity, 48),
+                ),
+              ),
             ),
           ],
         ),
