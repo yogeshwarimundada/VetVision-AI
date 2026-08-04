@@ -1,5 +1,5 @@
-import 'add_vaccination_screen.dart';
 import 'package:flutter/material.dart';
+import 'add_vaccination_screen.dart';
 
 class VaccinationScreen extends StatelessWidget {
   const VaccinationScreen({super.key});
@@ -64,13 +64,13 @@ class VaccinationScreen extends StatelessWidget {
         backgroundColor: const Color(0xFF2E7D32),
         elevation: 6,
         onPressed: () {
-  Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (_) => const AddVaccinationScreen(),
-    ),
-  );
-},
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => const AddVaccinationScreen(),
+            ),
+          );
+        },
         icon: const Icon(Icons.add, color: Colors.white),
         label: const Text(
           "Add Record",
@@ -104,13 +104,10 @@ class VaccinationCard extends StatelessWidget {
     switch (status) {
       case "Completed":
         return Colors.green;
-
       case "Upcoming":
         return Colors.orange;
-
       case "Overdue":
         return Colors.red;
-
       default:
         return Colors.grey;
     }
@@ -120,13 +117,10 @@ class VaccinationCard extends StatelessWidget {
     switch (status) {
       case "Completed":
         return Colors.green.shade100;
-
       case "Upcoming":
         return Colors.orange.shade100;
-
       case "Overdue":
         return Colors.red.shade100;
-
       default:
         return Colors.grey.shade200;
     }
@@ -134,16 +128,14 @@ class VaccinationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+        return Card(
       margin: const EdgeInsets.only(bottom: 16),
       elevation: 3,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
-
       child: Padding(
         padding: const EdgeInsets.all(18),
-
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -210,7 +202,8 @@ class VaccinationCard extends StatelessWidget {
             ),
 
             const Divider(height: 30),
-                        Row(
+
+            Row(
               children: const [
                 Icon(
                   Icons.calendar_month,
