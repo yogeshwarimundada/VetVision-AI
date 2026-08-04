@@ -9,11 +9,15 @@ class VaccinationScreen extends StatelessWidget {
       backgroundColor: const Color(0xFFF5F7FA),
 
       appBar: AppBar(
+        elevation: 0,
         backgroundColor: const Color(0xFF2E7D32),
         iconTheme: const IconThemeData(color: Colors.white),
         title: const Text(
           "Vaccination Records",
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
 
@@ -29,8 +33,6 @@ class VaccinationScreen extends StatelessWidget {
             status: "Completed",
           ),
 
-          SizedBox(height: 15),
-
           VaccinationCard(
             animalName: "Kitty",
             vaccine: "FVRCP Vaccine",
@@ -38,8 +40,6 @@ class VaccinationScreen extends StatelessWidget {
             nextDue: "20 June 2027",
             status: "Completed",
           ),
-
-          SizedBox(height: 15),
 
           VaccinationCard(
             animalName: "Rocky",
@@ -49,31 +49,36 @@ class VaccinationScreen extends StatelessWidget {
             status: "Upcoming",
           ),
 
-          SizedBox(height: 15),
-
           VaccinationCard(
             animalName: "Lucy",
             vaccine: "Leptospirosis Vaccine",
             vaccinatedOn: "12 April 2026",
             nextDue: "12 April 2027",
-            status: "Upcoming",
+            status: "Overdue",
           ),
         ],
       ),
 
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: const Color(0xFF2E7D32),
+        elevation: 6,
         onPressed: () {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text("Add Vaccination feature coming soon."),
+              behavior: SnackBarBehavior.floating,
+              content: Text(
+                "Add Vaccination feature will be connected soon.",
+              ),
             ),
           );
         },
         icon: const Icon(Icons.add, color: Colors.white),
         label: const Text(
           "Add Record",
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );
@@ -97,27 +102,48 @@ class VaccinationCard extends StatelessWidget {
   });
 
   Color getStatusColor() {
-    return status == "Completed"
-        ? Colors.green
-        : Colors.orange;
+    switch (status) {
+      case "Completed":
+        return Colors.green;
+
+      case "Upcoming":
+        return Colors.orange;
+
+      case "Overdue":
+        return Colors.red;
+
+      default:
+        return Colors.grey;
+    }
   }
 
   Color getStatusBackground() {
-    return status == "Completed"
-        ? Colors.green.shade100
-        : Colors.orange.shade100;
+    switch (status) {
+      case "Completed":
+        return Colors.green.shade100;
+
+      case "Upcoming":
+        return Colors.orange.shade100;
+
+      case "Overdue":
+        return Colors.red.shade100;
+
+      default:
+        return Colors.grey.shade200;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 4,
+      margin: const EdgeInsets.only(bottom: 16),
+      elevation: 3,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(16),
       ),
 
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(18),
 
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -127,7 +153,7 @@ class VaccinationCard extends StatelessWidget {
               children: [
 
                 const CircleAvatar(
-                  radius: 30,
+                  radius: 32,
                   backgroundColor: Color(0xFF2E7D32),
                   child: Icon(
                     Icons.vaccines,
@@ -146,18 +172,18 @@ class VaccinationCard extends StatelessWidget {
                       Text(
                         animalName,
                         style: const TextStyle(
-                          fontSize: 20,
+                          fontSize: 22,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
 
-                      const SizedBox(height: 5),
+                      const SizedBox(height: 4),
 
                       Text(
                         vaccine,
                         style: const TextStyle(
-                          color: Colors.grey,
                           fontSize: 16,
+                          color: Colors.black54,
                         ),
                       ),
                     ],
@@ -185,8 +211,7 @@ class VaccinationCard extends StatelessWidget {
             ),
 
             const Divider(height: 30),
-
-            Row(
+                        Row(
               children: const [
                 Icon(
                   Icons.calendar_month,
@@ -203,11 +228,17 @@ class VaccinationCard extends StatelessWidget {
             ),
 
             Padding(
-              padding: const EdgeInsets.only(left: 34, top: 5),
-              child: Text(vaccinatedOn),
+              padding: const EdgeInsets.only(
+                left: 34,
+                top: 6,
+              ),
+              child: Text(
+                vaccinatedOn,
+                style: const TextStyle(fontSize: 15),
+              ),
             ),
 
-            const SizedBox(height: 15),
+            const SizedBox(height: 18),
 
             Row(
               children: const [
@@ -226,11 +257,17 @@ class VaccinationCard extends StatelessWidget {
             ),
 
             Padding(
-              padding: const EdgeInsets.only(left: 34, top: 5),
-              child: Text(nextDue),
+              padding: const EdgeInsets.only(
+                left: 34,
+                top: 6,
+              ),
+              child: Text(
+                nextDue,
+                style: const TextStyle(fontSize: 15),
+              ),
             ),
 
-            const SizedBox(height: 25),
+            const SizedBox(height: 24),
 
             Row(
               children: [
@@ -240,39 +277,43 @@ class VaccinationCard extends StatelessWidget {
                     onPressed: () {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
+                          behavior: SnackBarBehavior.floating,
                           content: Text(
-                            "Vaccination certificate coming soon.",
+                            "Vaccination certificate will be available soon.",
                           ),
                         ),
                       );
                     },
-                    icon: const Icon(Icons.visibility),
+                    icon: const Icon(Icons.description),
                     label: const Text("View"),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF2E7D32),
                       foregroundColor: Colors.white,
+                      minimumSize: const Size(0, 48),
                     ),
                   ),
                 ),
 
-                const SizedBox(width: 15),
+                const SizedBox(width: 12),
 
                 Expanded(
                   child: ElevatedButton.icon(
                     onPressed: () {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
+                          behavior: SnackBarBehavior.floating,
                           content: Text(
-                            "Reminder feature coming soon.",
+                            "Reminder feature will be connected soon.",
                           ),
                         ),
                       );
                     },
-                    icon: const Icon(Icons.notifications),
+                    icon: const Icon(Icons.notifications_active),
                     label: const Text("Reminder"),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.orange,
                       foregroundColor: Colors.white,
+                      minimumSize: const Size(0, 48),
                     ),
                   ),
                 ),
